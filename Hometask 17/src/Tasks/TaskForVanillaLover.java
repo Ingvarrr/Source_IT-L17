@@ -16,11 +16,13 @@ public class TaskForVanillaLover implements Runnable {
 
     @Override
     public synchronized void run() {
+        while (!TaskForStore.isFinished() || IceCreamStore.iceCreamLand.getIceCreamList().size() != 0) {
             safeSleep(5400);
-            if(IceCreamStore.iceCreamLand.containsVanillaIceCream()){
+            if (IceCreamStore.iceCreamLand.containsVanillaIceCream()) {
                 vanillaIceCreamLover.EatIceCream();
                 IceCreamStore.iceCreamLand.removeVanillaIceCream();
             }
+        }
     }
     private void safeSleep(int timeout) {
         try {

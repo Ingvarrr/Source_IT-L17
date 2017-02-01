@@ -9,6 +9,15 @@ public class TaskForStore implements Runnable {
 
     private volatile int iceCreamLimit;
     private IceCreamStore store;
+    private static boolean isFinished = false;
+
+    public static void setIsFinished(boolean isFinished) {
+        TaskForStore.isFinished = isFinished;
+    }
+
+    public static boolean isFinished() {
+        return isFinished;
+    }
 
     public int getIceCreamLimit() {
         return iceCreamLimit;
@@ -25,6 +34,7 @@ public class TaskForStore implements Runnable {
             safeSleep(5000);
             store.produceIceCream();
         }
+        TaskForStore.setIsFinished(true);
     }
 
     private void safeSleep(int timeout) {

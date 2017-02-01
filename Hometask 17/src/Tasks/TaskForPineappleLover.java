@@ -16,11 +16,13 @@ public class TaskForPineappleLover implements Runnable {
 
     @Override
     public synchronized void run() {
+        while (!TaskForStore.isFinished() || IceCreamStore.iceCreamLand.getIceCreamList().size() != 0) {
             safeSleep(5200);
-            if(IceCreamStore.iceCreamLand.containsPineAppleIceCream()){
+            if (IceCreamStore.iceCreamLand.containsPineAppleIceCream()) {
                 pineappleIceCreamLover.EatIceCream();
                 IceCreamStore.iceCreamLand.removePineappleIceCream();
             }
+        }
     }
     private void safeSleep(int timeout) {
         try {
